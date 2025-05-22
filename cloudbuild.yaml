@@ -25,6 +25,7 @@ steps:
       - --allow-unauthenticated
       - --memory=512Mi
       - --timeout=300s
+      - --service-account=agent-renato@blueshift-contactcenterai.iam.gserviceaccount.com
 
 images:
   - 'gcr.io/$PROJECT_ID/streamlit-custom-model-renato:$SHORT_SHA'
