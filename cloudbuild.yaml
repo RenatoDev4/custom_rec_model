@@ -3,7 +3,7 @@ steps:
     args:
       - build
       - '-f'
-      - Dockerfile.streamlit
+      - Dockerfile
       - '-t'
       - 'gcr.io/$PROJECT_ID/streamlit-custom-model-renato:$SHORT_SHA'
       - '.'
