@@ -1,0 +1,10 @@
+kaggle
+google-cloud-storage
+scipy
+scikit-learn
+thefuzz
+pandas
+gcsfs
+tqdm
+nltk
+streamlit
