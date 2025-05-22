@@ -1,12 +1,14 @@
+import os
+import pickle
+import random
+from typing import List, Tuple
+
 import numpy as np
 import pandas as pd
 import streamlit as st
-import pickle
 from google.cloud import storage
-from typing import List, Tuple
-import os
-import random
 from thefuzz import process
+
 
 @st.cache_resource
 def load_artifacts_from_gcs():
@@ -30,7 +32,7 @@ def load_artifacts_from_gcs():
             bucket = client.bucket("bucket_agent_renato")
             
             print("Carregando artefatos do modelo...")
-            artifacts_blob = bucket.blob("custom_model/trained_model_artifacts/model_artifacts.pkl")
+            artifacts_blob = bucket.blob("aiplatform-custom-training-2025-05-22-14:48:48.606/model/model_artifacts.pkl")
             artifacts_blob.download_to_filename(local_artifacts_path)
             
             print("Carregando dados dos jogos...")

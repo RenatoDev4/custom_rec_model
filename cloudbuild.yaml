@@ -7,10 +7,24 @@ steps:
       - '-t'
       - 'gcr.io/$PROJECT_ID/streamlit-custom-model-renato:$SHORT_SHA'
       - '.'
+
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - push
       - 'gcr.io/$PROJECT_ID/streamlit-custom-model-renato:$SHORT_SHA'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - streamlit-custom-model-renato
+      - --image=gcr.io/$PROJECT_ID/streamlit-custom-model-renato:$SHORT_SHA
+      - --region=us-central1
+      - --platform=managed
+      - --allow-unauthenticated
+      - --memory=512Mi
+      - --timeout=300s
 
 images:
   - 'gcr.io/$PROJECT_ID/streamlit-custom-model-renato:$SHORT_SHA'
