@@ -1,0 +1,25 @@
+# cloudbuild.yaml
+substitutions:
+  _IMAGE_NAME: "streamlit-custom-model-renato"
+
+steps:
+  # 1) Build da imagem Docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-f', 'Dockerfile.streamlit',
+        '-t', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}:latest',
+        '.'
+      ]
+  # 2) Push da imagem para o Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        'gcr.io/$PROJECT_ID/${_IMAGE_NAME}:latest'
+      ]
+
+# Declara quais imagens serão produzidas (útil para rastreamento no console)
+images:
+  - 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}:latest'
